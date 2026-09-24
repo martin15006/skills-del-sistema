@@ -10,6 +10,8 @@ Mi setup completo de Claude Code, para rearmarlo en cualquier PC con un solo scr
 | Archivo | Qué es |
 |---|---|
 | `instalar.ps1` | Script que rearma todo: marketplaces, plugins, skills, agent-browser y CLAUDE.md |
+| `revisar.ps1` | Revisa qué hay que actualizar, sin cambiar nada |
+| `inventario.ps1` | La lista de marketplaces, plugins y skills que usan los dos scripts |
 | `claude/CLAUDE.md` | Mis instrucciones globales para Claude Code |
 
 ## Instalar en una PC nueva
@@ -45,6 +47,30 @@ Se puede correr varias veces: lo que ya está instalado se saltea.
 
 > **Ojo en la PC original:** el script reemplaza las skills sueltas por la versión que esté en
 > GitHub. Si cambié una skill y todavía no la subí, primero subirla.
+
+## Revisar si hay que actualizar algo
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\revisar.ps1
+```
+
+Solo mira, no cambia nada. Dice:
+
+- si mis skills instaladas son iguales a las de GitHub, y si sus carpetas del Escritorio tienen
+  cambios sin subir;
+- si las skills de terceros cambiaron en su repo original;
+- si hay versión nueva de agent-browser, y si ya cerraron los bugs que esquiva `navegador-visible`;
+- cuándo se actualizó cada plugin;
+- si la copia de `claude/CLAUDE.md` está al día, y si este repo sigue privado.
+
+Para además buscar e instalar versiones nuevas de los plugins:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\revisar.ps1 -ActualizarPlugins
+```
+
+> Una actualización de un plugin o una skill de terceros trae código nuevo que no revisé. Si
+> alguno salta de versión grande, pedirle a Claude, en el chat de skills, que revise qué cambió.
 
 ## Inventario
 
@@ -101,7 +127,7 @@ Se bajan de su repo original y se copian con su licencia.
 
 ## Cuando agregue o quite algo
 
-1. Editar las listas del principio de `instalar.ps1`.
+1. Editar las listas de `inventario.ps1`.
 2. Actualizar las tablas de este README.
 3. Si cambió mi CLAUDE.md, copiar `~/.claude/CLAUDE.md` a `claude/CLAUDE.md`.
 4. Commit y push.
