@@ -117,6 +117,9 @@ Se bajan de su repo original y se copian con su licencia.
 
 - `agent-browser` instalado global con npm.
 - Variable de usuario `AGENT_BROWSER_HEADED=1`, para que toda ventana de agent-browser sea visible.
+- Variable de usuario `DO_NOT_TRACK=1`: impeccable (y otras herramientas) no mandan avisos de uso.
+- `.impeccable/` en el gitignore global (`~/.config/git/ignore`): la carpeta que crea impeccable
+  en cada proyecto nunca se sube. Sus hooks quedan activos; en refugio-torre están apagados.
 - CLAUDE.md global.
 
 ## Qué NO está (a propósito)

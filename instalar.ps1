@@ -161,6 +161,25 @@ Hacer 'AGENT_BROWSER_HEADED=1 (todas las ventanas visibles)' {
     [Environment]::SetEnvironmentVariable('AGENT_BROWSER_HEADED', '1', 'User')
 }
 
+# ---------------------------- Otros ajustes -----------------------------
+Titulo 'Otros ajustes'
+
+Hacer 'DO_NOT_TRACK=1 (sin avisos de uso de impeccable y otras herramientas)' {
+    [Environment]::SetEnvironmentVariable('DO_NOT_TRACK', '1', 'User')
+}
+
+# La carpeta .impeccable/ que crea impeccable en cada proyecto nunca se sube: gitignore global.
+$ignoreGlobal = Join-Path $env:USERPROFILE '.config\git\ignore'
+$yaEsta = (Test-Path $ignoreGlobal) -and ((Get-Content $ignoreGlobal -ErrorAction SilentlyContinue) -contains '.impeccable/')
+if ($yaEsta) {
+    Write-Host '  ya estaba: .impeccable/ en el gitignore global' -ForegroundColor DarkGray
+} else {
+    Hacer ".impeccable/ en el gitignore global ($ignoreGlobal)" {
+        New-Item -ItemType Directory -Force -Path (Split-Path $ignoreGlobal) | Out-Null
+        Add-Content -Path $ignoreGlobal -Value '.impeccable/' -Encoding utf8
+    }
+}
+
 # ------------------------------ CLAUDE.md -------------------------------
 if ($SinClaudeMd) {
     Titulo 'CLAUDE.md global (salteado por -SinClaudeMd)'
