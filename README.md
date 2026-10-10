@@ -112,6 +112,10 @@ Se bajan de su repo original y se copian con su licencia.
 | `emil-design-eng` | [emilkowalski/skills](https://github.com/emilkowalski/skills) | `skills/emil-design-eng` |
 | `review-animations` | [emilkowalski/skills](https://github.com/emilkowalski/skills) | `skills/review-animations` |
 | `cybersecurity-codereview` | [AgriciDaniel/claude-cybersecurity](https://github.com/AgriciDaniel/claude-cybersecurity) | `skills/cybersecurity` |
+| `security-audit` | [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill) | `skills/security-audit` |
+
+> `security-audit` (Cloudflare): auditoría profunda donde otro agente intenta refutar cada hallazgo.
+> En Windows sus validadores no funcionan todavía (issue #53); `revisar.ps1` avisa cuando lo arreglen.
 
 ### Configuración
 

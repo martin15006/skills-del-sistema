@@ -39,11 +39,16 @@ $skillsSueltas = @(
     @{ Nombre = 'pacto-skill';              Repo = 'martin15006/pacto-skill';           Carpeta = 'skills/pacto-skill';       Propia = $true;  RepoLocal = 'pacto-skill' },
     @{ Nombre = 'emil-design-eng';          Repo = 'emilkowalski/skills';               Carpeta = 'skills/emil-design-eng';   Propia = $false; RepoLocal = $null },
     @{ Nombre = 'review-animations';        Repo = 'emilkowalski/skills';               Carpeta = 'skills/review-animations'; Propia = $false; RepoLocal = $null },
-    @{ Nombre = 'cybersecurity-codereview'; Repo = 'AgriciDaniel/claude-cybersecurity'; Carpeta = 'skills/cybersecurity';     Propia = $false; RepoLocal = $null }
+    @{ Nombre = 'cybersecurity-codereview'; Repo = 'AgriciDaniel/claude-cybersecurity'; Carpeta = 'skills/cybersecurity';     Propia = $false; RepoLocal = $null },
+    @{ Nombre = 'security-audit';           Repo = 'cloudflare/security-audit-skill';   Carpeta = 'skills/security-audit';    Propia = $false; RepoLocal = $null }
 )
 
-# Bugs de agent-browser en Windows que navegador-visible esquiva. Cuando se cierren, se puede simplificar la skill.
+# Bugs de terceros que mis skills o el CLAUDE.md esquivan. Cuando se cierren, se puede simplificar lo que los esquiva.
 $bugsVigilados = @(
-    @{ Numero = 1407; Que = 'el comando que abre la ventana se cuelga si su salida pasa por un tubo' },
-    @{ Numero = 1981; Que = 'set viewport da EOF con la ventana maximizada' }
+    @{ Repo = 'vercel-labs/agent-browser'; Numero = 1407; Que = 'el comando que abre la ventana se cuelga si su salida pasa por un tubo';
+       QueHacer = 'Mirá si ya salió en una versión (CHANGELOG), actualizá agent-browser y pedile a Claude que simplifique navegador-visible' },
+    @{ Repo = 'vercel-labs/agent-browser'; Numero = 1981; Que = 'set viewport da EOF con la ventana maximizada';
+       QueHacer = 'Mirá si ya salió en una versión (CHANGELOG), actualizá agent-browser y pedile a Claude que simplifique navegador-visible' },
+    @{ Repo = 'cloudflare/security-audit-skill'; Numero = 53; Que = 'los validadores de security-audit no leen archivos en Windows';
+       QueHacer = 'Corré instalar.ps1 para bajar la versión arreglada y pedile a Claude que saque la línea de Windows de security-audit del CLAUDE.md' }
 )

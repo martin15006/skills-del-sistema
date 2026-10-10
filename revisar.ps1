@@ -155,12 +155,15 @@ if (-not (Get-Command agent-browser -ErrorAction SilentlyContinue)) {
     elseif ($local -eq $ultima) { Bien "agent-browser $local (la última)" }
     else { Ojo "agent-browser $local; salió la $ultima" 'Con las ventanas de prueba cerradas: npm install -g agent-browser@latest' }
 }
+
+# ------------------------------ Bugs vigilados ------------------------------
+Titulo 'Bugs de terceros que esquivamos'
 foreach ($b in $bugsVigilados) {
-    $issue = ApiGitHub "repos/vercel-labs/agent-browser/issues/$($b.Numero)"
-    if ($issue -is [int]) { Info "No pude consultar el bug #$($b.Numero)"; continue }
+    $issue = ApiGitHub "repos/$($b.Repo)/issues/$($b.Numero)"
+    if ($issue -is [int]) { Info "No pude consultar $($b.Repo)#$($b.Numero)"; continue }
     if ($issue.state -eq 'closed') {
-        Ojo "Cerraron el bug #$($b.Numero): $($b.Que)" 'Mirá si ya salió en una versión (CHANGELOG), actualizá agent-browser y pedile a Claude que simplifique navegador-visible'
-    } else { Bien "El bug #$($b.Numero) sigue abierto; navegador-visible lo esquiva ($($b.Que))" }
+        Ojo "Cerraron $($b.Repo)#$($b.Numero): $($b.Que)" $b.QueHacer
+    } else { Bien "$($b.Repo)#$($b.Numero) sigue abierto ($($b.Que))" }
 }
 
 # --------------------------------- Plugins ---------------------------------
